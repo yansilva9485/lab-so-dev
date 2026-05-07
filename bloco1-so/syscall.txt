@@ -8,41 +8,52 @@
 # strace echo "ola" 2>&1 | grep write
 
 Saída filtrada:
+write(1, "ola\n", 4) = 4
 
 # Anote:
 #   Argumento 1 (file descriptor):
 #   O que está sendo escrito:
 #   Valor de retorno:
 
-fd:
-conteúdo:
-retorno:
+fd: 1
+conteúdo: "ola\n"
+retorno: 4
 
 
 # PARTE B — Programa C com write() direto
 
 # Cole aqui o código de syscall_direto.c que você escreveu:
 
-[código-fonte]
+#include <unistd.h>
+
+int main() {
+    write(1, "Ola, kernel!\n", 14);
+    return 0;
+}
 
 
 # Cole aqui a linha write(...) da saída de strace -o strace.txt ./syscall_direto:
 
-[saída do strace]
+write(1, "Ola, kernel!\n", 14) = 14
 
 
 # PARTE C — Questões de síntese
 
-# 1. A apresentação mostrou que "instruções de I/O são privilegiadas". 
+# 1. A apresentação mostrou que "instruções de I/O são privilegiadas".
 #    Com base no que o strace revelou, explique com suas palavras como um programa
 #    de usuário consegue fazer I/O sem executar instruções privilegiadas diretamente.
 
 Resposta 1:
+O programa em modo usuário faz uma chamada de sistema (syscall), como write(),
+para pedir ao kernel que execute a operação de I/O. O kernel roda em modo privilegiado
+e realiza o acesso ao dispositivo em nome do programa.
 
 
 # 2. Na apresentação sobre a genealogia do software, vimos que os programas de canal
 #    eram responsáveis por intermediar a transferência de dados entre a memória e os
-#    dispositivos, sem intervenção direta da CPU principal. Qual elemento do sistema 
-#    operacional moderno herda esse papel? 
+#    dispositivos, sem intervenção direta da CPU principal. Qual elemento do sistema
+#    operacional moderno herda esse papel?
 
 Resposta 2:
+Os drivers de dispositivo e o subsistema de I/O do kernel herdam esse papel,
+fazendo a comunicação entre hardware, memória e programas de usuário.
