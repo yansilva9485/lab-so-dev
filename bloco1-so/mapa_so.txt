@@ -1,3 +1,4 @@
+```bash
 # Atividade 1 — O sistema de arquivos como mapa do SO
 # Preencha este arquivo durante a atividade.
 # ─────────────────────────────────────────────────────
@@ -7,25 +8,32 @@
 # explicando a função do diretório com suas próprias palavras.
 
 /proc
-  
+Comando: ls /proc
+Função: Diretório virtual que mostra informações do kernel e dos processos em execução.
 
 /proc/cpuinfo
-  
+Comando: cat /proc/cpuinfo
+Função: Exibe informações detalhadas sobre o processador da máquina.
 
 /proc/meminfo
-  
+Comando: cat /proc/meminfo
+Função: Mostra o uso e a disponibilidade de memória RAM do sistema.
 
 /proc/uptime
-  
+Comando: cat /proc/uptime
+Função: Informa há quanto tempo o sistema está ligado e o tempo ocioso.
 
 /bin
+Comando: ls /bin
+Função: Contém programas e comandos essenciais do sistema, como ls, cp e mkdir.
 
-  
 /dev
-  
+Comando: ls /dev
+Função: Guarda arquivos que representam dispositivos de hardware, como discos e teclado.
 
 /etc
-  
+Comando: ls /etc
+Função: Armazena arquivos de configuração do sistema e de programas.
 
 
 # PARTE B — Questão de reflexão
@@ -33,4 +41,5 @@
 # e que rotinas de dispositivo traduziam comandos.
 # Em qual diretório do Linux você reconhece essa função?
 
-Resposta:
+Resposta: No diretório /dev, porque ele representa os dispositivos de entrada e saída do sistema através de arquivos especiais usados pelo kernel e pelos drivers.
+```
